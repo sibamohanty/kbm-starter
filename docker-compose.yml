@@ -1,15 +1,18 @@
-version:  '2'
+version:  '3'
 services:
   web:
     build: .
     entrypoint: ['pserve']
     command : [ "kbm.ini", "--reload"]
+#    command : >
+#              sh -c "python initialize_db.py
+#                          && pserve kbm.ini --reload"
     depends_on:
       - postgres
     volumes:
       - .:/usr/src/app
     ports:
-      - "6543:6543"
+      - "6542:6542"
     environment:
       DATABASE_URL: postgresql://kbm@postgres/kbm
   postgres:

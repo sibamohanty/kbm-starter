@@ -6,6 +6,10 @@ import json
 from kbm.models import Kbm, DBSession
 
 
+# @view_config(route_name='search', renderer='json')
+# def KbmSearch(request):
+#     pass
+
 @resource(collection_path='/articles', path='/articles/{id}')
 class KbmView(object):
 
@@ -30,12 +34,16 @@ class KbmView(object):
             return DBSession.query(Note).get(
                 int(self.request.matchdict['id'])).to_json()
         except:
-            return {}
+            return {"error:" "Something went wrong!"}
 
     def collection_post(self):
+        try:
+            kbm = self.request.json
+            DBSession.add(Kbm.from_json(kbm))
+            return {"success" :"Added list"}
 
-        kbm = self.request.json
-        DBSession.add(Kbm.from_json(kbm))
+        except:
+            return {"error": "Something went wrong!"}
 
     def put(self):
         try:

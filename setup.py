@@ -11,7 +11,9 @@ requires = [
     'pyramid_tm',
     'zope.sqlalchemy',
     'cornice',
-    'waitress'
+    'waitress',
+    'pytest',
+    'webtest'
 ]
 
 setup(name='kbm',
@@ -20,8 +22,8 @@ setup(name='kbm',
       # long_description=README,
       install_requires=requires,
       keywords="web services",
-      author='',
-      author_email='',
+      author='siba mphanty',
+      author_email='mohanty.siba@gmail.com',
       url='',
       packages=find_packages(),
       include_package_data=True,

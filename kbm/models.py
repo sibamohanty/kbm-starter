@@ -10,7 +10,7 @@ from zope.sqlalchemy import register
 DBSession = scoped_session(sessionmaker())
 register(DBSession)
 Base = declarative_base()
-make_searchable(Base.metadata)
+# make_searchable(Base.metadata)
 
 class Kbm(Base):
     __tablename__ = 'Note'
