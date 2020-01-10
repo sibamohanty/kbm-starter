@@ -2,10 +2,10 @@ to start the app-
 1. build 
 `docker-compose build`
 
-2 . run
+2. run
 `docker-compose up -d`
 
-3.initialize db
+3. initialize db
 `docker-compose ps`
 - it should show the running containers
 - pick the web-container name
@@ -33,3 +33,8 @@ headers add content/type : application/json
 <server_ip>:6542/articles
 
 - All the created articles should be visible to you.
+
+ To run tests
+- get inside the container
+run
+``pytest kbm/tests.py``
