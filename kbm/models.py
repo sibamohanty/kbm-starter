@@ -21,7 +21,7 @@ class Kbm(Base):
     create_by = Column(Text)
     priority = Column(Integer)
 
-    def __init__(self, title, description, create_at ,create_by, priority):
+    def __init__(self, title, description, create_at,create_by,priority):
         self.title = title
         self.description = description
         self.create_at = create_at
@@ -38,4 +38,3 @@ class Kbm(Base):
         for attr_name in to_serialize:
             d[attr_name] = getattr(self, attr_name)
         return d
-

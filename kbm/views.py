@@ -29,18 +29,18 @@ class KbmView(object):
             }
 
     def get(self):
-
         try:
-            return DBSession.query(Note).get(
-                int(self.request.matchdict['id'])).to_json()
+            kbm_id = int(self.request.matchdict['id'])
+            return DBSession.query(Kbm).get(kbm_id).to_json()
+
         except:
-            return {"error:" "Something went wrong!"}
+            return {"error": "Something went wrong!"}
 
     def collection_post(self):
         try:
             kbm = self.request.json
             DBSession.add(Kbm.from_json(kbm))
-            return {"success" :"Added list"}
+            return DBSession.query(Kbm).order_by(Kbm.id.desc()).first().to_json()
 
         except:
             return {"error": "Something went wrong!"}
@@ -48,6 +48,7 @@ class KbmView(object):
     def put(self):
         try:
             obj=DBSession.query(Kbm).filter(Kbm.id==self.request.matchdict['id'])
+            # print(len(obj))
             obj.update(self.request.json)
             return {'articles': [
                     {'id': kbm.id, 'title': kbm.title, 'description': kbm.description,
@@ -60,9 +61,8 @@ class KbmView(object):
         except:
             return {'result': 'No object found'}
 
-
     def delete(self):
-        obj=DBSession.query(kbm).filter(Kbm.id==self.request.matchdict['id']).first()
+        obj=DBSession.query(Kbm).filter(Kbm.id==self.request.matchdict['id']).first()
         DBSession.delete(obj)
 
         return {'articles': [

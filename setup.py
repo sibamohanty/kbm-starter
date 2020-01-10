@@ -13,7 +13,8 @@ requires = [
     'cornice',
     'waitress',
     'pytest',
-    'webtest'
+    'webtest',
+    'requests'
 ]
 
 setup(name='kbm',
